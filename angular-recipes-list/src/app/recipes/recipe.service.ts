@@ -57,11 +57,15 @@ export class RecipeService {
    */
   constructor(private shoppingListService: ShoppingListService) {}
 
-  getRecipes() {
+  getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
 
-  addRecipes(recipe: Recipe) {
+  getRecipe(id: number): Recipe {
+    return this.recipes[id];
+  }
+
+  addRecipe(recipe: Recipe) {
     return this.recipes.push(recipe);
   }
 
