@@ -20,7 +20,7 @@
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
         <li routerLinkActive="active">
-          <a routerLink="/shopping-list" >Shopping List</a>
+          <a routerLink="/shopping-list">Shopping List</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -29,8 +29,12 @@
             >Manage <span class="caret"></span
           ></a>
           <ul class="dropdown-menu">
-            <li><a style="cursor: pointer">Save Data</a></li>
-            <li><a style="cursor: pointer">Load Data</a></li>
+            <li>
+              <a style="cursor: pointer" (click)="onSaveData()">Save Data</a>
+            </li>
+            <li>
+              <a style="cursor: pointer" (click)="onFetchData()">Load Data</a>
+            </li>
           </ul>
         </li>
       </ul>
