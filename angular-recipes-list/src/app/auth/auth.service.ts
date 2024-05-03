@@ -6,6 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, catchError, tap, throwError } from 'rxjs';
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 export type AuthResponseData = {
   kind: string;
@@ -29,7 +30,7 @@ export class AuthService {
 
   user = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string) {
     return this.http
@@ -71,13 +72,18 @@ export class AuthService {
       );
   }
 
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
+  }
+
   private handleAuthentication(
     email: string,
     id: string,
     token: string,
     expiresIn: string
   ) {
-    const expirationDate = new Date(new Date().getTime() + +expiresIn);
+    const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
     const user = new User(email, id, token, expirationDate);
 
     this.user.next(user);
