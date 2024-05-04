@@ -18,7 +18,9 @@
       (window:resize)="collapsed = true"
     >
       <ul class="nav navbar-nav">
+        @if(isAuthenticated) {
         <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+        }
         <li routerLinkActive="active">
           <a routerLink="/shopping-list">Shopping List</a>
         </li>
